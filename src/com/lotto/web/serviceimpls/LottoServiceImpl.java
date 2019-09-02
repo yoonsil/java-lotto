@@ -17,7 +17,6 @@ public class LottoServiceImpl implements LottoService{
 
 	public void createLotto(LottoBean param) {
 		LottoBean bean = new LottoBean();
-		
 		bean.setBall(createball());
 		bean.setLotteryNum(createLotteryNum());
 		bean.setLottoSeq(createLottoSeq());
@@ -35,22 +34,23 @@ public class LottoServiceImpl implements LottoService{
 	}
 
 	public String createball() {
-		return new Random().nextInt(44)+1+"";
+		return new Random().nextInt(45)+1+"";
 	}
 	
 	public String createLotteryNum() {
 		String lotto = "";
 		int[] arr = new int[6];
 		ran = new Random();
-		for(int i=0; i<6; i++) {
-			int a = (ran.nextInt(44)+1);
+		for(int i=0; i<5; i++) {
+			int a = (ran.nextInt(45)+1); //
 			if(duplicatePrevention(arr, a)){
 				arr[i] = a;
 			}
+
 		}
-		Arrays.sort(arr);
-		for(int i=0; i<5; i++) {
-			if(i<4) {
+		Arrays.sort(arr); //ascendingSort
+		for(int i=0; i<6; i++) {
+			if(i<5) {
 				lotto += arr[i] + ","; 				
 			}else {
 				lotto += arr[i];
@@ -59,7 +59,7 @@ public class LottoServiceImpl implements LottoService{
 		System.out.println(lotto);
 		return lotto;
 	}
-
+	
 	public boolean duplicatePrevention(int[] arr, int a) {
 		boolean flag = false;
 		for(int i=0; i<6; i++) {
