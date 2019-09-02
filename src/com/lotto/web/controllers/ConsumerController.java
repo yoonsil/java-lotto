@@ -16,7 +16,6 @@ public class ConsumerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("consumer로 들어옴");
 		String cid = request.getParameter("cid");
 		String pass = request.getParameter("pass");
 		ConsumerBean param = new ConsumerBean();
@@ -24,7 +23,6 @@ public class ConsumerController extends HttpServlet {
 		param.setPass(pass);
 		ConsumerService service = new ConsumerServiceImpl();
 		service.registerConsumer(param);
-		System.out.println("완료");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
